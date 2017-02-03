@@ -57,8 +57,32 @@
   <audio data-key="75" src="sounds/tom.wav"></audio>
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
-<script>
+<script type="text/javascript">
+    function playSound(e) {
+        const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        key.classList.add('playing');
+        if (!audio) {
+            return;
+        }
+        else {
+            audio.currentTime = 0;
+            audio.play();
+        }
+    }
 
+    function removeTransition(e) {
+        if (e.propertyName !== 'transform') {
+            return;
+        }
+        else {
+            this.classList.remove('playing');
+        }
+    }
+
+    window.addEventListener('keydown', playSound);
+    const keys = document.querySelectorAll('.key');
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 </script>
 
 
