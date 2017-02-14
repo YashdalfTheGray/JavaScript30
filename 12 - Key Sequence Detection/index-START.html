@@ -7,6 +7,16 @@
 </head>
 <body>
 <script>
+    const pressed = [];
+    const secretCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
+    window.addEventListener('keyup', e => {
+        pressed.splice(-secretCode.length, pressed.length - secretCode.length);
+        pressed.push(e.keyCode);
+        console.log(pressed, secretCode);
+        if (pressed.join('') === secretCode.join('')) {
+            console.log('you win!');
+        }
+    });
 </script>
 </body>
 </html>
