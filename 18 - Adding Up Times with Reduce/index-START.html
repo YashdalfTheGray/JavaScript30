@@ -182,6 +182,18 @@
     </li>
   </ul>
 <script>
+let seconds = [...document.querySelectorAll('[data-time]')]
+.map(n => n.dataset.time)
+.map(ts => ts.split(':').map(parseFloat))
+.map(t => t[0] * 60 + t[1])
+.reduce((acc, s) => acc + s, 0);
+
+const hours = Math.floor(seconds / 3600);
+seconds = seconds % 3600;
+const minutes = Math.floor(seconds / 60);
+seconds = seconds % 60;
+
+console.log(`Total video time is ${[hours, minutes, seconds].join(':')}.`);
 </script>
 </body>
 </html>
