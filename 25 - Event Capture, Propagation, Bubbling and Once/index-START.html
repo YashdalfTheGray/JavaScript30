@@ -39,7 +39,15 @@
 
 <button></button>
 <script>
+    const divs = document.querySelectorAll('div');
 
+    function logText(e) {
+        // e.stopPropagation();
+        console.log(this.classList.value);
+    }
+
+    divs.forEach(d => d.addEventListener('click', logText, { capture: false }));
+    document.querySelector('button').addEventListener('click', () => console.log('Click!'), { once: true });
 </script>
 </body>
 </html>
